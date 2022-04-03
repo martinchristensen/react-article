@@ -1,10 +1,33 @@
 import React from 'react'
 
-import { ExampleComponent } from 'react-article'
+import { Article, Section, Header } from 'react-article'
 import 'react-article/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return (
+    <>
+      <Article>
+        <Section>
+          <Header>Section</Header>
+          <Section>
+            <Header>Section</Header>
+          </Section>
+          <Section>
+            <Header>Section</Header>
+            <Section>
+              <Header>Section</Header>
+              <Section>
+                <Header>Section</Header>
+              </Section>
+            </Section>
+          </Section>
+        </Section>
+        <Section>
+          <Header>Section</Header>
+        </Section>
+      </Article>
+    </>
+  )
 }
 
 export default App
