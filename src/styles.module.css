@@ -1,9 +1,21 @@
-/* add css module styles here (optional) */
-
-.test {
-  margin: 2em;
-  padding: 0.5em;
-  border: 2px solid #000;
-  font-size: 2em;
-  text-align: center;
+ol {
+  padding: 0 0 0 10px;
+  counter-reset: item
 }
+
+/*ol.headers-ol {*/
+/*  counter-reset: chapter-count;*/
+/*  padding: 0;*/
+/*}*/
+
+ol li {
+  display: block;
+  margin: 5px 0 5px 0;
+}
+
+ol li:before {
+  content: counters(item, ".") " ";
+  counter-increment: item
+}
+
+
