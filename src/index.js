@@ -84,7 +84,7 @@ export const TableOfContents = (props) => {
   )
 }
 
-export const BreadText = (props) => {
+export const Bread = (props) => {
   return (
     <div className={"react-article-bread" + (props.className !== undefined ? (" " + props.className) : "")}>
       {props.children}

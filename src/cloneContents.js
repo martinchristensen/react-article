@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Section, TableOfContents, BreadText } from "./index";
+import { Header, Section, TableOfContents, Bread } from "./index";
 
 export const cloneSections = (props, objCloneProps, parentIndexStr = null, startIndex = 1) => {
   return (
@@ -26,7 +26,7 @@ export const cloneHeaders = (props, objCloneProps) => {
 
 export const cloneBreadText = (props) => {
   return (
-    React.Children.toArray(props.children).filter(child => child.type === BreadText).map((bread, index) => {
+    React.Children.toArray(props.children).filter(child => child.type === Bread).map((bread, index) => {
       return (
         React.cloneElement(bread, {className: props.className})
       )
