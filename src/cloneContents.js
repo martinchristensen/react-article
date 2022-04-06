@@ -34,11 +34,13 @@ export const cloneBreadText = (props) => {
   )
 }
 
-export const cloneTableOfContents = (props) => {
+export const cloneTableOfContents = (props, objCloneProps) => {
   return (
     React.Children.toArray(props.children).filter(child => child.type === TableOfContents).map((table, index) => {
+      const newCloneProps = objCloneProps
+      newCloneProps["contents"] = fetchContents(props)
       return (
-        React.cloneElement(table, {contents: fetchContents(props)})
+        React.cloneElement(table, newCloneProps)
       )
     })
   )
@@ -52,30 +54,31 @@ const fetchContents = (props) => {
   let lvl4contents = [];
   let lvl5contents = [];
 
+
   const fetchHeaders = (section, level) => {
     React.Children.toArray(section.props.children).filter(child => child.type === Header || child.type === Section).map(item => {
       if (item.type === Header) {
         switch(level) {
           case 0:
-            contents.push(item.props.children)
+            contents.push({text: item.props.children, link: item.props.link })
             break;
           case 1:
-            lvl1contents.push(item.props.children)
+            lvl1contents.push({text: item.props.children, link: item.props.link })
             break;
           case 2:
-            lvl2contents.push(item.props.children)
+            lvl2contents.push({text: item.props.children, link: item.props.link })
             break;
           case 3:
-            lvl3contents.push(item.props.children)
+            lvl3contents.push({text: item.props.children, link: item.props.link })
             break;
           case 4:
-            lvl4contents.push(item.props.children)
+            lvl4contents.push({text: item.props.children, link: item.props.link })
             break;
           case 5:
-            lvl5contents.push(item.props.children)
+            lvl5contents.push({text: item.props.children, link: item.props.link })
             break;
           default:
-            contents.push(item.props.children)
+            contents.push({text: item.props.children, link: item.props.link })
         }
       }
       else if (item.type === Section)
