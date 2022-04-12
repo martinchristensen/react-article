@@ -56,20 +56,58 @@ export const Header = (props) => {
 
 export const TableOfContents = (props) => {
 
-  const createList = (contents) => {
+  const findParent = (contents, index) => {
+    for (let i = index; i => 0; i--) {
+      if (contents[i].level < contents[index].level) {
+        return contents[i]
+      }
+    }
+  }
+
+  const newCreateList = (contents, thisLevel = 0, parentIndex = 0) => {
     return (
       contents.map((content, index) => {
-        if(Array.isArray(content))
-          return (
-            <li key={index}>
-              {contents[index-1].link === undefined ? contents[index-1].text : <a href={"#react-article-" + props.articleId + "-header-"+contents[index-1].link}>{contents[index-1].text}</a> /*previous element of an array is its parent section*/}
-              <ol>
-                {createList(content)}
-              </ol>
-            </li>
-          )
-        else if (!Array.isArray(contents[index+1])) //If the next element is an array then it is a subsection of the element
-          return <li key={index}>{contents[index].link === undefined ? contents[index].text : <a href={"#react-article-" + props.articleId + "-header-"+contents[index].link}>{contents[index].text}</a>}</li>
+        if (content.level === thisLevel && contents[index+1] !== undefined && content.level < contents[index+1].level) { // Section has subsection(s)
+          if (content.level !== 0) { // The section is a subsection
+            if (contents[parentIndex] === findParent(contents, index)) { //If the function is called from its parent
+              return (
+                <li key={index}>
+                  {content.link === undefined ? content.text : <a href={"#react-article-" + props.articleId + "-header-"+content.link}>{content.text}</a>}
+                  <ol>
+                    { thisLevel < 5 ? newCreateList(contents, thisLevel+1, index) : "" }
+                  </ol>
+                </li>
+              )
+            }
+          }
+          else { // The section is at level 0
+            return (
+              <li key={index}>
+                {content.link === undefined ? content.text : <a href={"#react-article-" + props.articleId + "-header-"+content.link}>{content.text}</a>}
+                <ol>
+                  { thisLevel < 5 ? newCreateList(contents, thisLevel+1, index) : "" }
+                </ol>
+              </li>
+            )
+          }
+        }
+        else if (content.level === thisLevel ) { // section has no subsection(s)
+          if (content.level !== 0) { // The section is a subsection
+            if (contents[parentIndex] === findParent(contents, index)) { //If the function is called from its parent
+              return (
+                <li key={index}>
+                  {content.link === undefined ? content.text : <a href={"#react-article-" + props.articleId + "-header-"+content.link}>{content.text}</a>}
+                </li>
+              )
+            }
+          } else { //The section is at level 0
+            return (
+              <li key={index}>
+                {content.link === undefined ? content.text : <a href={"#react-article-" + props.articleId + "-header-"+content.link}>{content.text}</a>}
+              </li>
+            )
+          }
+        }
       })
     )
   }
@@ -78,7 +116,7 @@ export const TableOfContents = (props) => {
     <div className={"react-article-table-of-contents " + (props.className !== undefined ? props.className: "")}>
       {props.text !== undefined ? <h2>{props.text}</h2> : ""}
       <ol>
-        {createList(props.contents)}
+        {newCreateList(props.contents)}
       </ol>
     </div>
   )

@@ -9,28 +9,27 @@ const App = () => {
 
       <Article>
         <Header>Example Article</Header>
-        <Bread>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </Bread>
         <TableOfContents text={"Table of Contents"} />
         <Section>
-          <Header link={"yolo"}>This Section</Header>
-          <Bread>
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-          </Bread>
+          <Header>This Section</Header>
           <Section>
             <Header>This is a Subsection</Header>
-            <Bread>
-              <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-              <img src={'istockphoto.jpg'} style={{maxWidth: 500}}/>
-            </Bread>
+            <Section>
+              <Header>Section</Header>
+            </Section>
           </Section>
           <Section>
             <Header>So is this</Header>
+            <Bread>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </Bread>
             <Section>
-              <Header link={"bandit"}>And this</Header>
+              <Header>And this</Header>
               <Section>
                 <Header>This one too</Header>
+              </Section>
+              <Section>
+                <Header link={"hello-me"}>This one too too</Header>
               </Section>
             </Section>
           </Section>
@@ -40,6 +39,9 @@ const App = () => {
           <Section>
             <Header>That Subsection</Header>
           </Section>
+        </Section>
+        <Section>
+          <Header>I don't have any subsections</Header>
         </Section>
       </Article>
     </>

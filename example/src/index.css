@@ -17,3 +17,23 @@ code {
   max-width: 1000px;
   margin: auto;
 }
+
+h2 {
+  background-color: tomato;
+}
+
+h3 {
+  background-color: blueviolet;
+}
+
+h4 {
+  background-color: #d7ff47;
+}
+
+h5 {
+  background-color: #5a5a56;
+}
+
+h6 {
+   background-color: #60496d;
+ }

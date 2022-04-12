@@ -3,10 +3,10 @@ ol {
   counter-reset: item
 }
 
-/*ol.headers-ol {*/
-/*  counter-reset: chapter-count;*/
-/*  padding: 0;*/
-/*}*/
+ol.headers-ol {
+  counter-reset: chapter-count;
+  padding: 0;
+}
 
 ol li {
   display: block;
