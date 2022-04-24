@@ -17,7 +17,7 @@ export const Article = (props) => {
 export const Section = (props) => {
   return (
     <div className={"react-article-section react-article-level-" + props.level + " " +  (props.className !== undefined ? props.className: "")}>
-      {cloneHeaders(props, {level: props.level, indexStr: props.indexStr, articleId: props.articleId })}
+      {cloneHeaders(props, {level: props.level, indexStr: props.indexStr })}
       {cloneBreadText(props)}
       {cloneSections(props, {level: props.level+1, articleId: props.articleId }, props.indexStr)}
     </div>
@@ -27,25 +27,25 @@ export const Section = (props) => {
 export const Header = (props) => {
 
   const text = props.indexStr!==undefined ? props.indexStr + " " + props.children : props.children
-  const class_name = "react-article-header react-article-level-" + props.level + " " + (props.className !== undefined ? props.className: "");
-  const hLink = props.link !== undefined ? "react-article-" + props.articleId + "-header-" + props.link : ""
+  const class_name = props.className !== undefined ? props.className: "";
+  const id = props.id !== undefined ? props.id : "";
 
   const headerSwitch = (level) => {
     switch(level) {
       case 0:
         return <h1 className={class_name}> {text} </h1>
       case 1:
-        return <h2 id={hLink} className={class_name}> {text} </h2>
+        return <h2 id={id} className={class_name}> {text} </h2>
       case 2:
-        return <h3 id={hLink} className={class_name}> {text} </h3>
+        return <h3 id={id} className={class_name}> {text} </h3>
       case 3:
-        return <h4 id={hLink} className={class_name}> {text} </h4>
+        return <h4 id={id} className={class_name}> {text} </h4>
       case 4:
-        return <h5 id={hLink} className={class_name}> {text} </h5>
+        return <h5 id={id} className={class_name}> {text} </h5>
       case 5:
-        return <h6 id={hLink} className={class_name}> {text} </h6>
+        return <h6 id={id} className={class_name}> {text} </h6>
       default:
-        return <h6 id={hLink} className={class_name}> {text} </h6>
+        return <h6 id={id} className={class_name}> {text} </h6>
     }
   }
 
@@ -72,7 +72,7 @@ export const TableOfContents = (props) => {
             if (contents[parentIndex] === findParent(contents, index)) { //If the function is called from its parent
               return (
                 <li key={index}>
-                  {content.link === undefined ? content.text : <a href={"#react-article-" + props.articleId + "-header-"+content.link}>{content.text}</a>}
+                  {content.id === undefined ? content.text : <a href={"#" + content.id}>{content.text}</a>}
                   <ol>
                     { thisLevel < 5 ? newCreateList(contents, thisLevel+1, index) : "" }
                   </ol>
@@ -83,7 +83,7 @@ export const TableOfContents = (props) => {
           else { // The section is at level 0
             return (
               <li key={index}>
-                {content.link === undefined ? content.text : <a href={"#react-article-" + props.articleId + "-header-"+content.link}>{content.text}</a>}
+                {content.id === undefined ? content.text : <a href={"#" + content.id}>{content.text}</a>}
                 <ol>
                   { thisLevel < 5 ? newCreateList(contents, thisLevel+1, index) : "" }
                 </ol>
@@ -96,14 +96,14 @@ export const TableOfContents = (props) => {
             if (contents[parentIndex] === findParent(contents, index)) { //If the function is called from its parent
               return (
                 <li key={index}>
-                  {content.link === undefined ? content.text : <a href={"#react-article-" + props.articleId + "-header-"+content.link}>{content.text}</a>}
+                  {content.id === undefined ? content.text : <a href={"#" + content.id}>{content.text}</a>}
                 </li>
               )
             }
           } else { //The section is at level 0
             return (
               <li key={index}>
-                {content.link === undefined ? content.text : <a href={"#react-article-" + props.articleId + "-header-"+content.link}>{content.text}</a>}
+                {content.id === undefined ? content.text : <a href={"#" + content.id}>{content.text}</a>}
               </li>
             )
           }

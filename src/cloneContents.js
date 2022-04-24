@@ -35,7 +35,6 @@ export const cloneBreadText = (props) => {
 }
 
 export const cloneTableOfContents = (props, objCloneProps) => {
-
   return (
     React.Children.toArray(props.children).filter(child => child.type === TableOfContents).map((table, index) => {
 
@@ -54,7 +53,7 @@ const fetchContents = (props) => {
   const fetchHeaders = (section, level) => {
     React.Children.toArray(section.props.children).filter(child => child.type === Header || child.type === Section).map(item => {
       if (item.type === Header)
-        contents.push({text: item.props.children, link: item.props.link, level: level })
+        contents.push({text: item.props.children, id: item.props.id, level: level })
       fetchHeaders(item, level + 1)
     })
   }

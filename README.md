@@ -41,9 +41,8 @@ All components render in the following order:
 
     <Section> {/* Sections can be nested to 5 layers (first section included) */}
 
-      {/* The link prop for a Header will render the respective list element in the table of contents with a href to this. */}
-      {/* The link prop must be a unique string in the Article component with nu spaces*/}
-      <Header link={"I-am-unique"}>This is a subsection</Header>
+      {/* The id prop for a Header will render give the h-tag the id and the respective list element in the table of contents render with a href to this. */}
+      <Header id={"I-am-unique"}>This is a subsection</Header>
 
     </Section>
 
